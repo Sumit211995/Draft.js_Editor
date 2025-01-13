@@ -45,8 +45,10 @@ const App = () => {
 
   const [pressedKey, setPressedKey] = useState([]);
 
+  //keyBinding Function
   const keyBindingFn = (event) => {
     if (event.key === " ") {
+      //getting text from editor
       const selection = editorState.getSelection();
       const content = editorState.getCurrentContent();
       const block = content.getBlockForKey(selection.getStartKey());
@@ -72,6 +74,7 @@ const App = () => {
     return getDefaultKeyBinding(event);
   };
 
+  
   const removeCharactersAndStyle = (command) => {
     const selection = editorState.getSelection();
     const content = editorState.getCurrentContent();
@@ -115,6 +118,7 @@ const App = () => {
     return newEditorState;
   };
 
+  //handle key function
   const handleKeyCommand = (command) => {
     if (["heading", "bold", "red", "underline"].includes(command)) {
       const newState = removeCharactersAndStyle(command);
@@ -137,6 +141,7 @@ const App = () => {
     return "not-handled";
   };
 
+  //save editor content in local storage
   const saveEditorContent = () => {
     const contentState = editorState.getCurrentContent();
     const contentRaw = convertToRaw(contentState); // Convert ContentState to raw format
